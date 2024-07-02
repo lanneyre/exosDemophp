@@ -29,7 +29,10 @@ function toucheCoule($h, $v)
         Alors
         les coordonnées sont hors limites donc la fonction renvoi "Hors-jeu"
         */
-        if (strcmp(strtolower($h), "j") > 0 || $v < 1 || $v > 10) {
+        // var_dump(strcasecmp($h, "j"));
+        // Attention strcasecmp renverra quelque chose de juste avec de la ponstuation, un espace ou un caractère spécial. Il faut donc rajouter beaucoup de vérification pour être sûre qu'il n'y ai pas de bug
+        //empty($h) vérifie 2 choses : est-ce que la variable existe (si elle est déclarée) et si sa valeur est nulle : chaine de caractère vide, 0, null, []
+        if (empty($h) || strcasecmp($h, "j") > 0 || $v < 1 || $v > 10) {
             return "Hors-jeu";
         } else {
             //Sinon je créé une variable contenant les coordonnées tout en minuscule que je compare à mon tableau $touche
@@ -45,7 +48,7 @@ function toucheCoule($h, $v)
     }
 }
 //test de ma fonction
-echo " ''12 : " . toucheCoule("", 12);
+echo " ''12 : " . toucheCoule(",", 8);
 echo "\n------------------\n";
 echo " E8 : " . toucheCoule("E", 8);
 echo "\n------------------\n";
